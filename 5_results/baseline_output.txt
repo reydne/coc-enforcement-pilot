@@ -1,0 +1,11 @@
+Training: 5763 comments; test: 200
+              model                task  accuracy  F1 (macro for TBDF)  kappa  precision  recall
+Logistic regression   Civil vs. uncivil     0.750                0.709  0.500      0.847   0.610
+Logistic regression      Feature (TBDF)     0.580                0.303  0.369        NaN     NaN
+Logistic regression Violation (mapping)     0.805                0.519  0.406      0.700   0.412
+      Decision tree   Civil vs. uncivil     0.605                0.515  0.210      0.667   0.420
+      Decision tree      Feature (TBDF)     0.275                0.187  0.055        NaN     NaN
+      Decision tree Violation (mapping)     0.730                0.357  0.196      0.455   0.294
+      Random forest   Civil vs. uncivil     0.670                0.535  0.340      0.905   0.380
+      Random forest      Feature (TBDF)     0.525                0.219  0.165        NaN     NaN
+      Random forest Violation (mapping)     0.790                0.323  0.255      0.909   0.196

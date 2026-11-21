@@ -1,0 +1,40 @@
+{"item":41,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Neutral bug report with no incivility."}
+{"item":42,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Technical remark; 'unfortunate default' criticizes behavior, not people."}
+{"item":43,"tbdf":"Insulting","violation":true,"categories":["V2"],"confidence":"high","rationale":"Calls a participant a 'total asshat' sarcastically; derogatory name-calling."}
+{"item":44,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Helpful confirmation and workaround."}
+{"item":45,"tbdf":"None","violation":false,"categories":[],"confidence":"medium","rationale":"Firm but professional reply; mild pushback, requests reproducible code."}
+{"item":46,"tbdf":"Mocking","violation":false,"categories":[],"confidence":"low","rationale":"Laughing along at a joke; mild derision, not clearly aimed at a person."}
+{"item":47,"tbdf":"None","violation":false,"categories":[],"confidence":"low","rationale":"Image-only reply; no text to judge as uncivil."}
+{"item":48,"tbdf":"None","violation":false,"categories":[],"confidence":"medium","rationale":"Pushes back on perceived unfairness without insults."}
+{"item":49,"tbdf":"Impatience","violation":false,"categories":[],"confidence":"medium","rationale":"Asks whether a fix exists, implying delay; mild."}
+{"item":50,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Polite technical question."}
+{"item":51,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Friendly, thankful reply."}
+{"item":52,"tbdf":"Bitter frustration","violation":false,"categories":[],"confidence":"medium","rationale":"Strong dissatisfaction with paid plugin support, not personal attacks."}
+{"item":53,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Friendly advice."}
+{"item":54,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Polite plea with explanation."}
+{"item":55,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Neutral technical comment."}
+{"item":56,"tbdf":"Impatience","violation":false,"categories":[],"confidence":"medium","rationale":"Complains of no update and asks when it'll be resolved."}
+{"item":57,"tbdf":"None","violation":false,"categories":[],"confidence":"medium","rationale":"Maintainer politely locks heated thread."}
+{"item":58,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Simple +1 support."}
+{"item":59,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Technical discussion."}
+{"item":60,"tbdf":"Insulting","violation":true,"categories":["V2"],"confidence":"medium","rationale":"Mocking tone, belittling the author's attitude and 'kids under 10' jab."}
+{"item":61,"tbdf":"Mocking","violation":true,"categories":["V2","V6"],"confidence":"high","rationale":"Condescending 'sweetie' and mocking sarcasm with offensive 'Chastity Device' joke."}
+{"item":62,"tbdf":"Irony","violation":false,"categories":[],"confidence":"medium","rationale":"Sarcastic 'dolling out legal advice' opener, but substantive and civil otherwise."}
+{"item":63,"tbdf":"Impatience","violation":false,"categories":[],"confidence":"medium","rationale":"Persistent request for developer feedback; mild impatience."}
+{"item":64,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Technical argument, opinions flagged as such."}
+{"item":65,"tbdf":"Mocking","violation":false,"categories":[],"confidence":"low","rationale":"Short laughter reaction; mild, not clearly targeted."}
+{"item":66,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Direct but civil request to pick another issue."}
+{"item":67,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Automated bot message."}
+{"item":68,"tbdf":"None","violation":false,"categories":[],"confidence":"medium","rationale":"Agrees and criticizes a technology; no personal attack."}
+{"item":69,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Maintainer's calm technical reply."}
+{"item":70,"tbdf":"Impatience","violation":false,"categories":[],"confidence":"medium","rationale":"Asks for updates, implying delay; mild."}
+{"item":71,"tbdf":"Mocking","violation":true,"categories":["V2"],"confidence":"medium","rationale":"Sarcastic dismissal belittling the issue and those who care."}
+{"item":72,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Maintainer's neutral project management."}
+{"item":73,"tbdf":"Bitter frustration","violation":false,"categories":[],"confidence":"medium","rationale":"Strong displeasure at policy, accusing indifference, not insulting individuals."}
+{"item":74,"tbdf":"Insulting","violation":true,"categories":["V2"],"confidence":"high","rationale":"Repeats 'don't be an asshole' and calls author's behavior bad; hostile."}
+{"item":75,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Neutral question."}
+{"item":76,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Technical explanation."}
+{"item":77,"tbdf":"Bitter frustration","violation":false,"categories":[],"confidence":"medium","rationale":"Heated political argument about war, but not attacking the person."}
+{"item":78,"tbdf":"Irony","violation":false,"categories":[],"confidence":"medium","rationale":"Sarcastic rhetorical question implying carelessness; mild."}
+{"item":79,"tbdf":"Insulting","violation":true,"categories":["V2","V3"],"confidence":"high","rationale":"Accuses others of narcissism and arrogance; personal attack."}
+{"item":80,"tbdf":"Irony","violation":false,"categories":[],"confidence":"medium","rationale":"Calls out passive-aggression; mildly pointed but civil."}
