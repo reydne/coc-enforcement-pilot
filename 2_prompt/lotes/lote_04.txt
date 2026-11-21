@@ -1,0 +1,676 @@
+You are an expert annotator of developer communication in open-source software projects. You will classify GitHub issue comments. For each TARGET COMMENT you must give (A) its main incivility feature and (B) whether it violates the code of conduct.
+
+RULES
+- Judge ONLY the target comment. The previous comment and the issue title are context; do not label them.
+- Lines starting with ">" quote other people. Do not attribute quoted text to the author of the target comment.
+- Ignore code, logs and stack traces unless the author's own words around them are uncivil.
+- Strong technical criticism of code, tools or decisions is NOT, by itself, incivility or a violation. It becomes uncivil when it attacks, mocks or demeans people.
+- Classify each comment independently of the other comments in this batch.
+- If a comment is ambiguous, choose what an experienced open-source maintainer would choose and set "confidence" to "low".
+
+(A) INCIVILITY FEATURE - choose exactly ONE (the most salient), or "None":
+- Bitter frustration: expressing strong frustration or displeasure.
+- Impatience: conveying that something is taking too long.
+- Mocking: making fun of someone or something in a disrespectful way.
+- Irony: saying the opposite of what is meant, in a mocking way.
+- Vulgarity: profanity or improper language.
+- Threat: setting a condition or warning that affects the outcome of the discussion.
+- Entitlement: expecting special treatment or demanding work from maintainers as if it were owed.
+- Insulting: derogatory remarks directed at a person or group.
+- Identity attacks/Name-Calling: attacks or name-calling based on race, religion, nationality, gender, sexual orientation or other identity traits.
+- None: no incivility.
+
+(B) CODE OF CONDUCT VIOLATION (Contributor Covenant). A violation is any of:
+- V1 sexualized language or imagery, or sexual attention;
+- V2 trolling, insulting or derogatory comments;
+- V3 personal or political attacks;
+- V4 public or private harassment;
+- V5 publishing others' private information without permission;
+- V6 other conduct that could reasonably be considered inappropriate in a professional setting.
+
+EXAMPLES
+Target: "your description is useless so little effort in writing a decent ticket. Get to work and PR."
+{"tbdf":"Insulting","violation":true,"categories":["V2"],"confidence":"high","rationale":"Derogatory remark aimed at the issue author."}
+
+Target: "And it's been 12 years since I was a Telco head, so I am cured from the cool aid that they drink"
+{"tbdf":"Mocking","violation":true,"categories":["V2"],"confidence":"medium","rationale":"Ridicules a group of people."}
+
+Target: "Composer is garbage this kind of mistake should not happen, error unacceptable."
+{"tbdf":"Bitter frustration","violation":false,"categories":[],"confidence":"medium","rationale":"Harsh frustration aimed at the tool, not at a person."}
+
+Target: "When a maintainer tells you to STFU with the +1 comments, you stfu with the +1 comments."
+{"tbdf":"Vulgarity","violation":true,"categories":["V6"],"confidence":"high","rationale":"Profanity directed at participants is unprofessional."}
+
+Target: "Are you the running dogs of the United States? As a technical party, why do you stand in line with Ukraine"
+{"tbdf":"Identity attacks/Name-Calling","violation":true,"categories":["V3"],"confidence":"high","rationale":"Name-calling based on nationality and politics."}
+
+Target: "It works on AArch64, i686 and x86_64. So nothing to do with it. But note that gl4es is broken completely."
+{"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Blunt technical information without attacking anyone."}
+
+OUTPUT FORMAT
+Answer ONLY with one JSON object per line, one line per item, in the same order as the items, with no other text:
+{"item":<item number>,"tbdf":"<feature>","violation":true|false,"categories":[...],"confidence":"low|medium|high","rationale":"<at most 20 words>"}
+
+ITEMS
+
+### Item 121
+Repository: ohmyzsh/ohmyzsh
+Issue title: Red-Prompt on new line instead of replacing green one?
+Previous comment:
+"""
+> Hm, I don't think thats an issue. Count the lines since the last command, write into the buffer at that location, done.
+> > Applications like htop are constantly changing their buffer to provide "real-time" data, so a single rewrite in the buffer to display an icon shouldn't be hard.
+As trivial as this is, I'm surprised you haven't submitted a patch yet. If you're stuck on something, post it and maybe someone can help you out.
+"""
+TARGET COMMENT:
+"""
+> Hm, I don't think thats an issue. Count the lines since the last command, write into the buffer at that location, done.
+> > Applications like htop are constantly changing their buffer to provide "real-time" data, so a single rewrite in the buffer to display an icon shouldn't be hard.
+@Gandalf1783 Given your lack of response, I'm assuming you just wanted to gaslight someone (me in this case) without any actual knowledge of the problem? You just wanted to sound like you knew more than someone else without knowing anything at all?
+No program has enough knowledge (currently) to pull off what you think is trivial.
+The terminal doesn't know the purpose of the text it displays, it can't do it.
+zsh/omz/p10k doesn't know what happens in-between the prompts. They can control what is displayed on the current prompt lines. They can query where on the terminal they are, but once another program has run with unknown amount of text output and the screen scrolls, all for that previous knowledge is useless. Terminal queries for row number only apply to the displayed screen, not relative to the top of the scroll back buffer. To be fair, I too was annoyed by this some time ago and solved it for myself by displaying green/red lines across the entire terminal width before the next prompt is displayed. The color line is the status for everything above the line. I've left the prompt symbol in, but rarely look it. Here's an example:
+<img width="363" alt="image" src="https://user-images.githubuserc [...truncated]
+"""
+
+### Item 122
+Repository: mojolicious/mojo
+Issue title: delay helper is DEPRECATED, but no transition options are given
+Previous comment:
+"""
+Please use our official support channels. https://mojolicious.org/perldoc#SUPPORT
+"""
+TARGET COMMENT:
+"""
+This discussion is meant to either change/introduce documentation or code. You can mark it as a suggestion, but closing it is not very helpful. For instance, Net::OAuth2::AuthorizationServer tests upon installation produce many of these warnings, just as an example. It affects other CPAN authors along the way, and web searches should end up here, i suppose.
+"""
+
+### Item 123
+Repository: composer/composer
+Issue title: Any chance to remove the #StandWithUkraine ?
+Previous comment:
+"""
+@artembeloglazov > ```
+> composer self-remove
+> ```
+Acting like a child.
+"""
+TARGET COMMENT:
+"""
+@djengis
+> @artembeloglazov
+> > > ```
+> > composer self-remove
+> > ```
+> > Acting like a child.
+Acting like a child: using an international it-project for political propaganda and demonstration of absolute misunderstanding of the situation.
+It's been 2 years and it's already clear to everyone that Ukraine is just a way to launder money for US military corporations, and the composer is a dying project that should be gradually removed from their projects.
+"""
+
+### Item 124
+Repository: apache/couchdb
+Issue title: Add support for authentication/authorization using cookies containing JWTs
+Previous comment:
+"""
+> Precisely. The JWT is stored in an _HHTPOnly_ cookie on the browser/client. So, how do I set the clients HTTP `Authorization` header server side?
+The JWT token has nothing to do with a session or a cookie. You send it with your request to get access (if correct). How you (securly) store them on your client is a completely different question.
+"""
+TARGET COMMENT:
+"""
+Add support for authentication/authorization using cookies containing JWTs is the issue.
+We need Couch to look for JWT's in a cookie.
+How to securely store JWT's on your client includes using HTTPOnly cookies which makes it impossible to authenticate to Couch (unless you expose the JWT to client side scripting).
+"""
+
+### Item 125
+Repository: matplotlib/matplotlib
+Issue title: Don't draw end caps on error bars by default
+Previous comment:
+"""
+(none - this is the first post of the issue)
+"""
+TARGET COMMENT:
+"""
+The current default is to display end caps on error bars.
+![errorbar_demo_features](https://cloud.githubusercontent.com/assets/2631586/9798244/bde5a546-57cd-11e5-89c8-e37e225a301c.png)
+I argue that end caps are not useful as visual cues for most plots. They are seriously harmful in "busy" plots with many data points, where error bars start to overlap and the end caps start to cross other error bars.
+Tufte teaches us that we should maximize the data-to-ink ratio. End caps do not provide any additional information over the error bar, so they should not be there by default. End caps are useful to indicate a secondary interval, like the systematic uncertainty of a point, a beautiful example is Fig. 13 in this paper:
+http://arxiv.org/pdf/1409.4809v3.pdf
+I recently introduced a patch to make the default length of these end caps part of the configuration, so that they can be turned off by default (by setting errorbar.capsize to 0 in matplotlibrc). Please make this the new default. :)
+"""
+
+### Item 126
+Repository: ruby-i18n/i18n
+Issue title: Replace custom module for refinements with Gorilla Patch gem
+Previous comment:
+"""
+Thanks for the patch but I would rather keep the dependencies simple for this gem.
+"""
+TARGET COMMENT:
+"""
+> Thanks for the patch but I would rather keep the dependencies simple for this gem.
+Can you somehow to argument this point? It looks like "Thank you, I'll not use I18n (or ActiveSupport, or Ruby on Rails, or Ruby), I'll write and maintain my own code instead".
+"""
+
+### Item 127
+Repository: nextcloud/server
+Issue title: [Files sharing] Log message: "/appinfo/app.php is deprecated"
+Previous comment:
+"""
+> As a user
+So as a user you're complaining about a *debug log output*. Seriously, why do you worry about this so much? You enable debug mode for a few secs to gather some info, then you disable it again.
+Now tell me: would you rather have a silent log where we, the maintainers, can't help you solve an issue due to the lack of information?
+"""
+TARGET COMMENT:
+"""
+> you're complaining about a _debug log output_
+No, actually I'm not complaining about a debug log output, and I've already conceded that deprecation notices might be useful for developers. What I'm specifically stating is that **deprecation notices** at a rate of 3/second is a **useless thing in the UI**.
+> Now tell me: would you rather have a silent log where we, the maintainers, can't help you solve an issue due to the lack of information?
+I thought deprecation notices are more of a reminder to later tackle the phased out code. Am I wrong?
+"""
+
+### Item 128
+Repository: npm/npm
+Issue title: ESLint-scope 3.7.2 has been hacked
+Previous comment:
+"""
+Just forbid all packages containing a string "eval", or make them require manual reviewal. But my advise would be just ban them for good
+"""
+TARGET COMMENT:
+"""
+@gedgaudasnikita how would that help? then they write the code to a file, and `require()` it.. or download a compiled binary instead of using JS for their malware.
+btw, why do you have two accounts? @nikita-gedgaudas-ht / @gedgaudasnikita - AFAIK the GitHub ToS only allow one account per human
+"""
+
+### Item 129
+Repository: rustdesk/rustdesk
+Issue title: Add Linux ARM support
+Previous comment:
+"""
+To be fair didn't know that they were written already thinking in other arches, generally instructions are written only thinking on x86/x86_64
+"""
+TARGET COMMENT:
+"""
+> @Heap-Hop tested today on Pi4, performance is bad, and failed to get vpx encoder work. We paused to invest time on it. Will continue once we are free.
+How did you test it with SCiter not supporting AARCH64
+"""
+
+### Item 130
+Repository: capistrano/capistrano
+Issue title: reading the variable "latest_release" before "deploy" task happens makes capistrano BREAK
+Previous comment:
+"""
+Running into this issue currently I think.
+How does one call the current release path that is right now being built?
+I have a task running at `after :updated, :build do` and I'm trying to change directories and then run composer install, but changing directories using release_path is giving me the previous release, not the one currently being built.
+Is that this issue? If not I'm sorry but the stackoverflow question led me here and I'm going kind of crazy trying to figure out how to change directories and then run a command, without it doing it in the release that's about to be replaced.
+"""
+TARGET COMMENT:
+"""
+This issue is more than five years old, and refers to a long obsolete version of Capistrano, please open a new issue.
+"""
+
+### Item 131
+Repository: php/php-src
+Issue title: DateTimeImmutable::createFromFormat parses non-existing timezone offsets
+Previous comment:
+"""
+That was a lot of words to say "it's wrong because I think it's wrong".
+Why is it wrong to allow an offset that isn't in use by some (named) timezone? Why must it only allow offsets that can be found applied in (named) timezones?
+"""
+TARGET COMMENT:
+"""
+Well, because of your 'human readability' - 'user-friendliness' etc. Why would I as a developer risk using PHP DateTime object (DateTimeImmutable), without being sure it'll do all the jobs, because I do not want some Carbon datetime library to mess with my RFC 3339 datetime standards implementation, with my ISO 8601 datetime standards implementation and with WHATWG HTML living standard datetime standard implementation. That's why. But I am flexible. On constructive part of it. And I will always find a solution. This I consider a bug. There's only 37/38 timezone offsets that should have been properly parsed by those functions. Our planet Earth is only so big.
+"""
+
+### Item 132
+Repository: saltstack/salt
+Issue title: Provide python version mismatch solutions
+Previous comment:
+"""
+@isbm having 3.x there means that it matches all the 3 subversions. if I remove the .x someone might think it would only apply to 3 and this would make it more confusing.
+Adding new line to the text is ignored and I'm not sure I should spend more time on this.
+Your example seems to remove some of the useful information and has this "on a Master" that I don't understand. Is that intended or should it be "on the Master"?
+I was using origin and target in order to avoid Master and Minion because none of these machines have salt-master or salt-minion running.
+"""
+TARGET COMMENT:
+"""
+@dincamihai the "3.x" is the same as "3", as I see it. I also suggested to use integers as in the `version_info` instead of just strings. And so if we have some issue with the 3.8 (e.g.) one would just add a minor version key. Otherwise default should go. But "3.x" is more to me looks like a hack.
+The "origin" is something that might not be understood. Personally to me it is very odd terminology here. And you are running "SaltSSH" from the Master (or want-to-be-master).
+"""
+
+### Item 133
+Repository: microsoft/vscode
+Issue title: vscode Have you started charging?
+Previous comment:
+"""
+> Fun fact: MIT License allows you to "sell copies of the Software" with or without modification.
+Thanks for the TIP, I am going to sell VS Code at $114514/copy.
+"""
+TARGET COMMENT:
+"""
+mark LOL nice joke during work
+"""
+
+### Item 134
+Repository: strapi/strapi
+Issue title: Enable findOne by unique fields GraphQL
+Previous comment:
+"""
+Hi @nicecatch great suggestion. You can achieve that by overridding the query and the action to handle it quickly on your own :)
+"""
+TARGET COMMENT:
+"""
+@lauriejim Maybe is a good example for another guide?
+"""
+
+### Item 135
+Repository: JuliaLang/julia
+Issue title: Global variable scope rules lead to unintuitive behavior at the REPL/notebook
+Previous comment:
+"""
+> Do you seriously want to go back to the pre-v0.2 world
+No, I want to go back to the 0.6 world. 😉
+"""
+TARGET COMMENT:
+"""
+I guess I was responding more to:
+> One other fix not mentioned here is to simply stop making ‘for’ define a scope-block
+"""
+
+### Item 136
+Repository: MinecraftForge/MinecraftForge
+Issue title: Forge mod causing LuckPerm commands to not register in client
+Previous comment:
+"""
+#7754 - 39.0.46 Add Client Commands
+Extensive testing and searching shows that issue does indeed start at Forge Version 39.0.46 when PR for "Add Client Commands" was requested.
+"""
+TARGET COMMENT:
+"""
+Temporarily locking this issue as nothing is being added.
+We know what caused this. We're trying to see if there's anything we can do to fix this, but i honestly doubt it.
+LuckPerms (or Spigot/Paper/Whatever) isn't sending the client information about the commands.
+"""
+
+### Item 137
+Repository: hashicorp/vagrant
+Issue title: Vagrant box downloads extremely slow
+Previous comment:
+"""
+I'm experience the same slow experience. Anyone can try aria - http://aria2.sourceforge.net/ and http://stackoverflow.com/questions/3430810/wget-download-with-multiple-simultaneous-connections
+It's seems a little bit faster, but, man, you can set this up using default vagrant download mechanism and take a walk or make yourself a sandwich. Get way from screen for a little bit.
+"""
+TARGET COMMENT:
+"""
+Having the same problem here:
+1. Upload a box manually to atlas
+2. Create a new Vagrantfile with just `vm_cfg.vm.box_url = <user>/box-name`
+3. `vagrant up` - box downloads slowly
+4. wget box url from atlas (see `vagrant up` output) - box downloads lightening fast
+"""
+
+### Item 138
+Repository: libretro/RetroArch
+Issue title: Makefile: Fix debug builds.
+Previous comment:
+"""
+Can you please untag my PR with that ridiculous bs? Changes will not be made because this is the correct behavior and you just broke it, seriously why can't you just accept that you are wrong?
+"""
+TARGET COMMENT:
+"""
+For windows we even ship debug builds on every nightly.
+I guess adding DEBUG=0 is feasible but I don't think it should be the default behavior
+"""
+
+### Item 139
+Repository: Sonarr/Sonarr
+Issue title: Prevent Downgrading Language during Quality Upgrade
+Previous comment:
+"""
+**Describe the problem**
+Currently you can enable multiple languages and can also prefer some over the other, but sonarr will ignore the prefered language if there is a better quality in another language. I would like a option (or standard) that other languages over the prefered ONLY get chosen when there is not prefered language.
+**Describe any solutions you think might work**
+**Currently behaivior**
+Language selection
+Upgrade until Language 1
+Language 1 (higher is prefered)
+Language 2
+_Avaible Releases:_
+Release language 1 720p
+Release language 2 720p
+Release language 1 480p
+Release language [...truncated]
+"""
+TARGET COMMENT:
+"""
+We don't have plans to support language over quality at this time, but will be looking at preventing downgrades of the language in order to upgrade the quality.
+"""
+
+### Item 140
+Repository: vuetifyjs/vuetify
+Issue title: [Task] Vuetify 3 Release Checklist
+Previous comment:
+"""
+> > I think that beta is an incorrect tag for the current situation. It should be alpha. So many components doesn't work properly like they worked in 2.6 version. Everything great. Let's just wait. This is great UI framework. I am still waiting my v-data-table component
+> > Which components do not work properly?
+Vuetify3 beta3
+Component breadcrumbs. Has invalid styles and html structure
+![image](https://user-images.githubusercontent.com/5112918/171979191-c0906edb-6461-4dac-b7c1-465308ddb278.png)
+Vuetify3 beta3.
+Validation Error should have red color but it is gray.
+In beta2. It was red
+![image [...truncated]
+"""
+TARGET COMMENT:
+"""
+Please learn how to read and stop spamming the `Vuetify 3.0 Release CHECKLIST` issue ticket.
+I didn't subscribe it to read wining people screaming for ETA without really helping the project and ignoring text warnings.
+"""
+
+### Item 141
+Repository: flatpak/xdg-desktop-portal
+Issue title: Screenshot portal without prompt
+Previous comment:
+"""
+Hi Team,
+Can I request if this issue is being addressed? Totally fine if it isn't deemed an issue, I can revert to Xorg.
+"""
+TARGET COMMENT:
+"""
+Any news? This is not normal. Workflow can't be damaged this way..
+"""
+
+### Item 142
+Repository: rails/rails
+Issue title: Decimal: Check attribute has value (with attrname?)
+Previous comment:
+"""
+@Sega100500 oops, that's my bad. Now I modified column to `decimal` but it didn't change my result. Still my tests are passing. Could you please paste exact code snippets of your project so that it easy to debug?
+"""
+TARGET COMMENT:
+"""
+@sivagollapalli
+Oooooohhhh!
+SEE ABOVE!!!
+1. joined table
+```
+SELECT products.*, contents.*, products.id AS product_id FROM `contents` INNER JOIN products ON products.content_id = contents.id WHERE (contents.visible != 0) AND `contents`.`visible` = 1 AND `contents`.`furl` = 'apple-iphone-5s-16gb' AND `products`.`id` = 191 AND `products`.`category_id` = 312 GROUP BY contents.id
+```
+1. Then `columns_hash` not contains `price` column
+2. Then code:
+```
+if Numeric === value || value !~ /[^0-9]/
+!value.to_i.zero?
+else
+```
+Is BUG!
+This can be understood?
+See the sources, Luk!
+`lib/active_record/attribute_methods/query.rb#query_attribute(attr_name)`
+"""
+
+### Item 143
+Repository: libretro/RetroArch
+Issue title: Video width and height are switched when a vertically-oriented game is loaded
+Previous comment:
+"""
+@grant2258
+You are completely hopeless. Several other devs agreed that there’s an issue, FBA dev already agreed that there is an issue and fixed it In FBA. To deny that there is an issue at this point is pretty much insane. I’m done talking to you.
+"""
+TARGET COMMENT:
+"""
+@fr500, yeah I don’t know why this is even still a discussion. I’m at a loss. I use custom aspect ratios with RA because I overscan some games that scale to 1120 on the y axis. Switching it to core provided didn’t change what was going on with the reported width/height and rotation, as far as I could tell. Anyway, the issue in FBA was fixed yesterday so I think this issue can be closed; rotation behavior appears to be consistent, at least from the user’s perspective. The issue of how to best handle rotation is really a separate topic that probably warrants its own issue.
+"""
+
+### Item 144
+Repository: doctrine/orm
+Issue title: 1k issues! (some of them from 2013) is it doctrine ORM not ACTIVELY maintaining anymore? IS IT DEAD?
+Previous comment:
+"""
+(none - this is the first post of the issue)
+"""
+TARGET COMMENT:
+"""
+No. Better look on the page with releases, than number of issues.
+"""
+
+### Item 145
+Repository: JodaOrg/joda-time
+Issue title: KyivNotKiev
+Previous comment:
+"""
+(none - this is the first post of the issue)
+"""
+TARGET COMMENT:
+"""
+The data here is merely a copy of the data in eggert/tz. When the source data changes, the data here will naturally also be updated.
+"""
+
+### Item 146
+Repository: bigbluebutton/bigbluebutton
+Issue title: When require moderator approval before joining is set, no user can be promoted to moderator
+Previous comment:
+"""
+Pedro, when the room does not require approval, guest users can be promoted without any problem, that works fine. That's why I understand the right solution is to behave the same way. Are you sure that is "a feature" that without approval you can promote them, and with approval you can't? I would say no. In fact that is confusing! Just my humble opinion.
+"""
+TARGET COMMENT:
+"""
+Can you explain a little more about what is a room that does not require approval? What are you considering to be a guest?
+This is the server-side control on user's promotion:
+https://github.com/bigbluebutton/bigbluebutton/blob/da9489c9dde1e1d0a3da942b95d95def66dd6105/akka-bbb-apps/src/main/scala/org/bigbluebutton/core/apps/users/ChangeUserRoleCmdMsgHdlr.scala#L32-L43
+Promotions are only enabled to non-guest users.
+"""
+
+### Item 147
+Repository: JuliaLang/julia
+Issue title: Global variable scope rules lead to unintuitive behavior at the REPL/notebook
+Previous comment:
+"""
+Making code harder to write interactively, forcing beginners writing their first loops to understand obscure scoping rules, and making code pasted from functions not work in global scopes does not help programmers write fast code in functions. It just makes it harder to use Julia interactively and harder for beginners.
+"""
+TARGET COMMENT:
+"""
+> Can't we have it as a non-default feature of the REPL in 1.1?
+Making an "unbreak me" option the default seems wiser, especially an option that is aimed squarely at beginning users. If it is a non-default option, then precisely those people who need it most will be those who don't have it enabled (and don't know it exists).
+"""
+
+### Item 148
+Repository: ohmyzsh/ohmyzsh
+Issue title: Red-Prompt on new line instead of replacing green one?
+Previous comment:
+"""
+And the difficulty in trying to accomplish it. The prompt cmd would have to know where the previous prompt was displayed and then go back to rewrite it, without affecting anything else.
+"""
+TARGET COMMENT:
+"""
+Hm, I don't think thats an issue.
+Count the lines since the last command, write into the buffer at that location, done.
+Applications like htop are constantly changing their buffer to provide "real-time" data, so a single rewrite in the buffer to display an icon shouldn't be hard.
+"""
+
+### Item 149
+Repository: scikit-learn/scikit-learn
+Issue title: loading my own datasets
+Previous comment:
+"""
+(none - this is the first post of the issue)
+"""
+TARGET COMMENT:
+"""
+Hi all,
+I am very new in scikit-learn. My questions is: how to download my own dataset (csv file).
+I will be highly appreciated any answers.
+Thanks.
+Martin
+"""
+
+### Item 150
+Repository: JodaOrg/joda-time
+Issue title: Using the correct spelling for the capital of Ukraine (Kyiv instead of Kiev).
+Previous comment:
+"""
+The data here is merely a copy of the data in `eggert/tz`. When the source data changes, the data here will naturally also be updated.
+"""
+TARGET COMMENT:
+"""
+Please explain the reason why this issue was closed without resolving it?
+"""
+
+### Item 151
+Repository: rubygems/rubygems
+Issue title: Bundler and RubyGems install directory mismatch
+Previous comment:
+"""
+Let's have a fresh discussion about this at https://github.com/rubygems/rubygems/issues/4031.
+"""
+TARGET COMMENT:
+"""
+Many people don't install to the default directory, but to the user directory (--user-install), in fact, it's the default on many distributions.
+Unfortunately this causes a mismatch between bundler and gem, since bundler doesn't read `gemrc` configuration files.
+This problem has been explored in many issues: rubygems/bundler#710, rubygems/bundler#2565, rubygems/bundler#2667, chef/chef-dk#148. No satisfactory resolution from the development team.
+I took the time to develop a simply and easy solution myself that should absolutely work for everyone, an environment variable: GEM_USER_INSTALL, which just works ™. And thus I am creating yet another issue ticket.
+"""
+
+### Item 152
+Repository: kaminari/kaminari
+Issue title: ALLOW negative pagination, with a warning instead of a halting error
+Previous comment:
+"""
+Negative padding is already working just fine, returning no results in some instances is an expected behavior. I think the problem is actually with some user's interpretation of the behavior, not the actual behavior of the code.
+"""
+TARGET COMMENT:
+"""
+Sadly I had to block this user Tectract entirely from the kaminari org. This user isn't just aggressive to us, but also has a history of ranting on other repos, most notably on [Diaspora](https://github.com/diaspora/diaspora/issues/7866#issuecomment-421593824), [React](https://github.com/facebook/react/issues/15432#issuecomment-484290354), [Rails](https://github.com/rails/rails/issues/33009#issuecomment-392961139), and [Ruby](https://github.com/ruby/bigdecimal/issues/98). I have reported this user to GitHub as well.
+"""
+
+### Item 153
+Repository: rust-lang/rust
+Issue title: Rename master branch to less discriminating name
+Previous comment:
+"""
+Or just don't change anything because this is a dumb idea and noone has complained before because it's not related to racism in any way and the 2 accounts above are just alts.
+"""
+TARGET COMMENT:
+"""
+What is an alt? Do you mean the german word for `old`? You're name doesn't seem very old, it seems like a minecraft name.
+"""
+
+### Item 154
+Repository: thoughtbot/factory_bot
+Issue title: How Factory Girl create association with existing object?
+Previous comment:
+"""
+I believe we need `many-to-many` association between `Boy` and `Girl` classes.
+"""
+TARGET COMMENT:
+"""
+Came here because of a frustrating engineering problem, disappointed to see people are discussing irrelevant social issues.
+* Yes the social issues are important
+* No github issues is probably not the right place to discuss/debate them
+* Call the classes `Yob` and `Lrig`, I don't care, I need a solution to the inter-dependent factory objects
+"""
+
+### Item 155
+Repository: sveltejs/kit
+Issue title: Color adjustment asap please - Docs
+Previous comment:
+"""
+I tend to agree that we could add more contrast to the sidebar. I'm not sure I like the proposed changes though. Here's a screenshot of what they look like
+![Screenshot from 2022-04-12 09-40-44](https://user-images.githubusercontent.com/322311/163012323-601a03cb-4502-4501-bf3b-79f284653f93.png)
+Alternatively, here's the sideback background set to `#363636` with no change to the active link
+![Screenshot from 2022-04-12 09-43-56](https://user-images.githubusercontent.com/322311/163012757-73360b3d-d8df-42dd-bcd8-56c396ba3133.png)
+"""
+TARGET COMMENT:
+"""
+Another idea, here's using bold rather than color to indicate the active item
+![Screenshot from 2022-04-12 09-48-01](https://user-images.githubusercontent.com/322311/163013432-21c71ad2-0dc6-4bea-aeba-fa71bda869a0.png)
+"""
+
+### Item 156
+Repository: sinonjs/sinon
+Issue title: blm
+Previous comment:
+"""
+I agree, words matter.
+How about contributing a pull request to make the changes?
+"""
+TARGET COMMENT:
+"""
+There is not one place where the term blacklist was used in this project code! Only once in a comment (how to change the comment???). Also a quick search for the term "sanity", "dummy" and so on did not result in any code line affected. Yeah sure... rename your "master" branch to "primary" or so... The lazyness from OP stinks as it is easier to . Close this thread, as this is not stopping supposed racism but some person feeling better by yakshaving instead of actually solving issues.
+"""
+
+### Item 157
+Repository: binogure-studio/city-game-studio-i18n
+Issue title: Suggestion: suggestions,feature request,fixations
+Previous comment:
+"""
+(none - this is the first post of the issue)
+"""
+TARGET COMMENT:
+"""
+6-When doing some project in left hand side panel.the studio's flexibility is low,we can not add or remove studios on current projects to another which is contrary to real life as you can bring practical solutions to unexpected situations,wrong decisions etc...
+"""
+
+### Item 158
+Repository: kubernetes/website
+Issue title: Link to CNCF contributor guide
+Previous comment:
+"""
+Hey @NitishKumar06 this is my first issue to work on, please let me solve this. This is not about competition, its only about community work, wouldn't it bother you if i do the same with you. Please don't go against kubernetes policies. if someone is assigned on the issue first you must ask if they are still working or not. You are not doing the right thing @NitishKumar06 And in this case I'm working on it. Today i will raise a PR. Please be kind and look for other issues you will find one definitely. 😀
+/unassign @NitishKumar06
+"""
+TARGET COMMENT:
+"""
+Hey @NitishKumar06 you are not following the policy of kubernetes. I will report you to Kubernetes community.
+"""
+
+### Item 159
+Repository: nodejs/node
+Issue title: Rename default branch from "master" to "main"
+Previous comment:
+"""
+@mmarchini I'm not sure, but I've not heard of any issues after switching over any of the other repos.
+I do think treating it along the lines of a security release make makes sense. A pre-planned block of time where we restrict access makes sense.
+"""
+TARGET COMMENT:
+"""
+And I'm along the same thought as @ljharb that we should avoid a period where both are used and just do a rename and try to prevent a push of master after that.
+"""
+
+### Item 160
+Repository: PCSX2/pcsx2
+Issue title: [BUG] God of War 1 - FMV bug after 1.4.0
+Previous comment:
+"""
+(none - this is the first post of the issue)
+"""
+TARGET COMMENT:
+"""
+There is a provided issue template when you create an issue, please follow it.
+Does this issue happen in software mode? (Pressing F9 or changing the renderer in gsdx)
+Issue template:
+**Describe the bug**
+<!-- A clear and concise description of what the bug is. -->
+**To Reproduce**
+<!-- Steps to reproduce the behavior. -->
+**Expected behavior**
+<!-- A clear and concise description of what you expected to happen. -->
+**GS Settings**
+<!-- Any non-default settings for GS. -->
+<!-- If you don't want to list them out, please provide screenshots of your configuration window (including hw hacks if enabled). -->
+**Emulation Settings**
+<!-- Any non-default core settings. -->
+<!-- If you don't want to list them out, please provide screenshots of your configuration window. -->
+<!-- Please note that the safe preset works for most games. -->
+<!-- MTVU can have some compatibility issues so please disable it before making a report. -->
+<!-- If you need to modify the settings manually because a game requires you to do so to work, please state that explicitly. -->
+**GS Window Screenshots**
+<!-- If your issue is graphical in nature and you think screenshots will help illustrate your issue, you may do that here. -->
+**System Info (please complete the following information):**
+- PCSX2 Revision: <!-- e.g. dev-525 -->
+- OS: <!-- e.g. Windows 10 -->
+- CPU: <!-- e.g. i5-7600 -->
+- GPU: <!-- e.g. GTX 1070 -->
+**Logs and Dumps**
+"""

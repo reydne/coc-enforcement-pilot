@@ -1,0 +1,54 @@
+Itens avaliados: 200 de 200. Faltando: []. Linhas inválidas: 0
+
+=== Tarefa A: característica de incivilidade (TBDF) ===
+Acurácia: 0.580
+Kappa de Cohen (LLM x dataset): 0.395
+                               precision    recall  f1-score   support
+
+                         None      0.764     0.840     0.800       100
+           Bitter frustration      0.217     0.250     0.233        20
+                   Impatience      0.286     0.286     0.286        14
+                      Mocking      0.667     0.571     0.615        14
+                        Irony      0.231     0.333     0.273         9
+                    Vulgarity      0.750     0.333     0.462         9
+                       Threat      1.000     0.667     0.800         6
+                  Entitlement      0.000     0.000     0.000         9
+                    Insulting      0.357     0.357     0.357        14
+Identity attacks/Name-Calling      0.000     0.000     0.000         5
+
+                     accuracy                          0.580       200
+                    macro avg      0.427     0.364     0.383       200
+                 weighted avg      0.569     0.580     0.568       200
+
+Incivil x civil -> P=0.822 R=0.740 F1=0.779 kappa=0.580
+
+=== Tarefa B: violação de CoC (referência = mapeamento a priori) ===
+P=0.625 R=0.294 F1=0.400 kappa=0.283
+Proporção marcada como violação pelo LLM, por TBDF de referência:
+                               mean  count
+tbdf_ref                                  
+Impatience                     0.00     14
+None                           0.01    100
+Bitter frustration             0.10     20
+Mocking                        0.21     14
+Insulting                      0.29     14
+Entitlement                    0.33      9
+Irony                          0.33      9
+Vulgarity                      0.33      9
+Identity attacks/Name-Calling  0.40      5
+Threat                         0.50      6
+
+Acerto por nível de confiança:
+            mean  count
+confidence             
+high        0.81    108
+low         0.33     21
+medium      0.30     71
+
+=== RQ1: consequências nas threads trancadas (todo o dataset) ===
+Invoke Code of Conduct: 35 de 404 threads (8.7%)
+Trying to stop the incivility: 44 de 404 threads (10.9%)
+Discontinued further discussion: 116 de 404 threads (28.7%)
+Escalating further: 79 de 404 threads (19.6%)
+
+Arquivos gerados: matriz_confusao_tbdf.csv, discordancias.csv

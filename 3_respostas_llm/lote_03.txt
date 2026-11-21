@@ -1,0 +1,40 @@
+{"item":81,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Helpful technical suggestion with no incivility."}
+{"item":82,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Polite request for input on colors."}
+{"item":83,"tbdf":"Irony","violation":false,"categories":[],"confidence":"low","rationale":"Possibly sarcastic jab, but mild and ambiguous; could be a sincere question."}
+{"item":84,"tbdf":"Impatience","violation":false,"categories":[],"confidence":"medium","rationale":"Annoyed at repeating himself; no personal attack beyond 'you dont get it'."}
+{"item":85,"tbdf":"Bitter frustration","violation":false,"categories":[],"confidence":"medium","rationale":"Irritated, mild profanity aimed at a phrase, not a person."}
+{"item":86,"tbdf":"None","violation":false,"categories":[],"confidence":"medium","rationale":"Informal idiom in helpful technical workaround; no incivility toward anyone."}
+{"item":87,"tbdf":"Bitter frustration","violation":false,"categories":[],"confidence":"medium","rationale":"Strong criticism of the software's usability; not attacking people."}
+{"item":88,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Constructive, respectful technical argument."}
+{"item":89,"tbdf":"Mocking","violation":true,"categories":["V2"],"confidence":"high","rationale":"Gloats and ridicules the other player's skill in a derisive way."}
+{"item":90,"tbdf":"Irony","violation":false,"categories":[],"confidence":"medium","rationale":"Pointed rhetorical criticism of an argument; mildly ironic, not demeaning."}
+{"item":91,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Neutral bug report."}
+{"item":92,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Plain technical remark."}
+{"item":93,"tbdf":"Entitlement","violation":false,"categories":[],"confidence":"medium","rationale":"Demands features and dismisses maintainers' work; rude but not personal attack."}
+{"item":94,"tbdf":"Threat","violation":true,"categories":["V2","V4"],"confidence":"high","rationale":"'You should be killed' directed at a maintainer is a threatening, abusive remark."}
+{"item":95,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Neutral bug report."}
+{"item":96,"tbdf":"Irony","violation":false,"categories":[],"confidence":"low","rationale":"Light joking reply with a wink; playful, not demeaning."}
+{"item":97,"tbdf":"Bitter frustration","violation":false,"categories":[],"confidence":"medium","rationale":"Blames the tool for personal stress; no attack on individuals."}
+{"item":98,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Standard feature request template."}
+{"item":99,"tbdf":"Bitter frustration","violation":false,"categories":[],"confidence":"medium","rationale":"Frustrated, mildly accusatory of maintainer, but largely professional."}
+{"item":100,"tbdf":"Impatience","violation":false,"categories":[],"confidence":"medium","rationale":"Surprise that feature is missing; mild criticism of the company."}
+{"item":101,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Respectful technical discussion."}
+{"item":102,"tbdf":"Identity attacks/Name-Calling","violation":true,"categories":["V3","V6"],"confidence":"high","rationale":"Proposes blocking people by nationality, with political taunting and trolling."}
+{"item":103,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Constructive security discussion."}
+{"item":104,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Polite request to update the issue."}
+{"item":105,"tbdf":"Bitter frustration","violation":false,"categories":[],"confidence":"medium","rationale":"Critical of commercial motives, but directed at product decisions, not people."}
+{"item":106,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Disagreement stated civilly."}
+{"item":107,"tbdf":"Mocking","violation":false,"categories":[],"confidence":"medium","rationale":"Mirrors sarcastic 'Imagine...' phrasing; sarcastic but not a personal attack."}
+{"item":108,"tbdf":"Entitlement","violation":false,"categories":[],"confidence":"low","rationale":"Tells maintainers what they should do ('you should'); slightly condescending but mostly technical."}
+{"item":109,"tbdf":"Impatience","violation":false,"categories":[],"confidence":"medium","rationale":"Blunt, condescending technical lecture; 'toy implementation' criticizes work, not person."}
+{"item":110,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Polite feature feedback."}
+{"item":111,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Code context for troubleshooting."}
+{"item":112,"tbdf":"Insulting","violation":true,"categories":["V2"],"confidence":"high","rationale":"Calls another person stupid with profane insult."}
+{"item":113,"tbdf":"Threat","violation":true,"categories":["V6"],"confidence":"low","rationale":"'Final notice' is a veiled warning/moderation-style reprimand; unprofessional tone."}
+{"item":114,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Neutral bug report."}
+{"item":115,"tbdf":"None","violation":false,"categories":[],"confidence":"medium","rationale":"Light-hearted meme comment."}
+{"item":116,"tbdf":"None","violation":false,"categories":[],"confidence":"medium","rationale":"Helpful doc output; 'in case you were curious' mildly snarky but minor."}
+{"item":117,"tbdf":"Bitter frustration","violation":false,"categories":[],"confidence":"medium","rationale":"Harsh judgment of exercise outcomes, not aimed at a person."}
+{"item":118,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Direct technical answer."}
+{"item":119,"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Civil discussion of design choices."}
+{"item":120,"tbdf":"Impatience","violation":false,"categories":[],"confidence":"low","rationale":"Firm, somewhat condescending correction ('you are wrong'); mostly civil."}
