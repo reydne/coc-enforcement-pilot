@@ -1,0 +1,54 @@
+You are an expert annotator of developer communication in open-source software projects. You will classify GitHub issue comments. For each TARGET COMMENT you must give (A) its main incivility feature and (B) whether it violates the code of conduct.
+
+RULES
+- Judge ONLY the target comment. The previous comment and the issue title are context; do not label them.
+- Lines starting with ">" quote other people. Do not attribute quoted text to the author of the target comment.
+- Ignore code, logs and stack traces unless the author's own words around them are uncivil.
+- Strong technical criticism of code, tools or decisions is NOT, by itself, incivility or a violation. It becomes uncivil when it attacks, mocks or demeans people.
+- Classify each comment independently of the other comments in this batch.
+- If a comment is ambiguous, choose what an experienced open-source maintainer would choose and set "confidence" to "low".
+
+(A) INCIVILITY FEATURE - choose exactly ONE (the most salient), or "None":
+- Bitter frustration: expressing strong frustration or displeasure.
+- Impatience: conveying that something is taking too long.
+- Mocking: making fun of someone or something in a disrespectful way.
+- Irony: saying the opposite of what is meant, in a mocking way.
+- Vulgarity: profanity or improper language.
+- Threat: setting a condition or warning that affects the outcome of the discussion.
+- Entitlement: expecting special treatment or demanding work from maintainers as if it were owed.
+- Insulting: derogatory remarks directed at a person or group.
+- Identity attacks/Name-Calling: attacks or name-calling based on race, religion, nationality, gender, sexual orientation or other identity traits.
+- None: no incivility.
+
+(B) CODE OF CONDUCT VIOLATION (Contributor Covenant). A violation is any of:
+- V1 sexualized language or imagery, or sexual attention;
+- V2 trolling, insulting or derogatory comments;
+- V3 personal or political attacks;
+- V4 public or private harassment;
+- V5 publishing others' private information without permission;
+- V6 other conduct that could reasonably be considered inappropriate in a professional setting.
+
+EXAMPLES
+Target: "your description is useless so little effort in writing a decent ticket. Get to work and PR."
+{"tbdf":"Insulting","violation":true,"categories":["V2"],"confidence":"high","rationale":"Derogatory remark aimed at the issue author."}
+
+Target: "And it's been 12 years since I was a Telco head, so I am cured from the cool aid that they drink"
+{"tbdf":"Mocking","violation":true,"categories":["V2"],"confidence":"medium","rationale":"Ridicules a group of people."}
+
+Target: "Composer is garbage this kind of mistake should not happen, error unacceptable."
+{"tbdf":"Bitter frustration","violation":false,"categories":[],"confidence":"medium","rationale":"Harsh frustration aimed at the tool, not at a person."}
+
+Target: "When a maintainer tells you to STFU with the +1 comments, you stfu with the +1 comments."
+{"tbdf":"Vulgarity","violation":true,"categories":["V6"],"confidence":"high","rationale":"Profanity directed at participants is unprofessional."}
+
+Target: "Are you the running dogs of the United States? As a technical party, why do you stand in line with Ukraine"
+{"tbdf":"Identity attacks/Name-Calling","violation":true,"categories":["V3"],"confidence":"high","rationale":"Name-calling based on nationality and politics."}
+
+Target: "It works on AArch64, i686 and x86_64. So nothing to do with it. But note that gl4es is broken completely."
+{"tbdf":"None","violation":false,"categories":[],"confidence":"high","rationale":"Blunt technical information without attacking anyone."}
+
+OUTPUT FORMAT
+Answer ONLY with one JSON object per line, one line per item, in the same order as the items, with no other text:
+{"item":<item number>,"tbdf":"<feature>","violation":true|false,"categories":[...],"confidence":"low|medium|high","rationale":"<at most 20 words>"}
+
+ITEMS
